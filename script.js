@@ -1,62 +1,84 @@
-// Data World Postif
-$.ajax({
-	url: 'https://api.kawalcorona.com/positif',
-	type: 'get',
-	dataType: 'json',
-	success: function (data) {
-		$('#totalPositif').append(data.value)
-	}
-})
+// Fungsi Format Number
+function formatNumber(num) {
+	return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') 
+}
 
-// Data World Sembuh
-$.ajax({
-	url: 'https://api.kawalcorona.com/sembuh',
-	type: 'get',
-	dataType: 'json',
-	success: function (data) {
-		$('#totalSembuh').append(data.value)
+// Fungsi Gender
+function statusGender(sg) {
+	if (sg == "Sembuh") {
+		return ` <span class="btn btn-icon btn-sm btn-success">` + sg + `</span>`
+	} else if (sg == "Dalam Perawatan") {
+		return ` <span class="btn btn-icon btn-sm btn-warning">` + sg + `</span>`
+	} else if (sg == "Meninggal") {
+		return ` <span class="btn btn-icon btn-sm btn-danger">` + sg + `</span>`
 	}
-})
+}
 
-// Data World Meninggal
+// Data World
 $.ajax({
-	url: 'https://api.kawalcorona.com/meninggal',
+	url: 'https://covid-19.mathdro.id/api',
 	type: 'get',
 	dataType: 'json',
 	success: function (data) {
-		$('#totalMeninggal').append(data.value)
+		$('#totalPositif').append(formatNumber(data.confirmed.value))
+		$('#totalSembuh').append(formatNumber(data.recovered.value))
+		$('#totalMeninggal').append(formatNumber(data.deaths.value))
 	}
 })
 
 // Data Coronavirus di indonesia
 $.ajax({
-	url: 'https://api.kawalcorona.com/indonesia',
+	url: 'https://kawalcovid19.harippe.id/api/summary',
 	type: 'get',
 	dataType: 'json',
 	success: function (data) {
-		$.each(data, function (i, result) {
-			$('#positif').append(result.positif)
-			$('#sembuh').append(result.sembuh)
-			$('#meninggal').append(result.meninggal)
-		})
+		$('#positif').append(formatNumber(data.confirmed.value))
+		$('#dalamPerawatan').append(formatNumber(data.activeCare.value))
+		$('#sembuh').append(formatNumber(data.recovered.value))
+		$('#meninggal').append(formatNumber(data.deaths.value))
 	}
 })
 
 // Data Coronavirus di indonesia berdasarkan Provinsi
 $.ajax({
-	url: 'https://api.kawalcorona.com/indonesia/provinsi',
+	url: 'https://indonesia-covid-19.mathdro.id/api/provinsi',
 	type: 'get',
 	dataType: 'json',
 	success: function (data) {
-		$.each(data, function (i, result) {
+		
+		let datas = data.data
+		$.each(datas, function (i, result) {
 			$('#dataIndo').append(`
-			<tr>
+				<tr>
 				<td>` + i + `</td>
-				<td>` + result.attributes.Provinsi +`</td>
-				<td>` + result.attributes.Kasus_Posi +`</td>
-				<td>` + result.attributes.Kasus_Semb +`</td>
-				<td>` + result.attributes.Kasus_Meni +`</td>
-			</tr>
+				<td>` + result.provinsi +`</td>
+				<td>` + formatNumber(result.kasusPosi) + `</td>
+				<td>` + formatNumber(result.kasusSemb) + `</td>
+				<td>` + formatNumber(result.kasusMeni) + `</td>
+				</tr>
+				`)
+		})
+	}
+})
+
+// Data Coronavirus di Indonesia perKasus
+$.ajax({
+	url: 'https://indonesia-covid-19.mathdro.id/api/kasus',
+	type: 'get',
+	dataType: 'json',
+	success: function (data) {
+		let datas = data.data.nodes
+		$.each(datas, function (i, result) {
+			$('#dataKasus').append(`
+				<tr>
+				<td>` + i + `</td>
+				<td>` + formatNumber(result.kasus) +`</td>
+				<td>` + result.umur +`</td>
+				<td>` + result.gender + `</td>
+				<td>` + statusGender(result.status) + `</td>
+				<td>` + result.wn + `</td>
+				<td>` + result.klaster + `</td>
+				</tr>
 				`)
 		})
 	}
@@ -70,13 +92,13 @@ $.ajax({
 	success: function (data) {
 		$.each(data, function (i, result) {
 			$('#dataGlobal').append(`
-			<tr>
+				<tr>
 				<td>` + i + `</td>
 				<td>` + result.attributes.Country_Region +`</td>
-				<td>` + result.attributes.Confirmed +`</td>
-				<td>` + result.attributes.Recovered +`</td>
-				<td>` + result.attributes.Deaths +`</td>
-			</tr>
+				<td>` + formatNumber(result.attributes.Confirmed) + `</td>
+				<td>` + formatNumber(result.attributes.Recovered) + `</td>
+				<td>` + formatNumber(result.attributes.Deaths) + `</td>
+				</tr>
 				`)
 		})
 	}

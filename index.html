@@ -136,6 +136,11 @@ $result_data_global = json_decode($data_global, true); -->
                         <p class="text-muted">Orang</p>
                       </div>
                       <div class="col text-center">
+                        <h5>Dalam Perawatan</h5>
+                        <h3 class="mb-1" id="dalamPerawatan"></h3>
+                        <p class="text-muted">Orang</p>
+                      </div>
+                      <div class="col text-center">
                         <h5>Sembuh</h5>
                         <h3 class="mb-1" id="sembuh"></h3>
                         <p class="text-muted">Orang</p>
@@ -159,7 +164,7 @@ $result_data_global = json_decode($data_global, true); -->
                   <div class="card-header">
                     <h4>Data kasus Coronavirus di Indonesia berdasarkan Provinsi</h4>
                   </div>
-                  <div class="card-body p-0">
+                  <div class="card-body">
                     <div class="table-responsive" style="overflow-y: auto; max-height: 500px">
                       <table class="table table-striped table-md">
                         <thead>
@@ -182,14 +187,46 @@ $result_data_global = json_decode($data_global, true); -->
             </div>
             <!-- End Data Indonesia berdasarkan Provinsi -->
 
+            <!--  Data Coronavirus di Indonesia perKasus -->
+            <div class="row">
+              <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Data Kasus Coronavirus di Indonesia</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive" style="overflow-y: auto; max-height: 500px">
+                      <table class="table table-striped table-md">
+                        <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Kasus</th>
+                          <th>Umur</th>
+                          <th>Gender</th>
+                          <th>status</th>
+                          <th>WNI</th>
+                          <th>Provinsi</th>
+                        </tr>
+                        </thead>
+                        <tbody id="dataKasus">
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Data Coronavirus di Indonesia perKasus -->
+
             <!-- Data Global -->
             <div class="row">
               <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4>Data kasus Coronavirus Global</h4>
+                    <h4>Data Kasus Coronavirus Global</h4>
                   </div>
-                  <div class="card-body p-0">
+                  <div class="card-body">
                     <div class="table-responsive" style="overflow-y: auto; max-height: 500px">
                       <table class="table table-striped table-md">
                         <thead>
