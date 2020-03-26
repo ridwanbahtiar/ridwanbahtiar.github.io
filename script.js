@@ -5,7 +5,7 @@ function formatNumber(num) {
 
 //Fungsi Gender
 function gender(g) {
-	if (g == "Laki-laki") {
+	if (g == "Laki-laki" || g =="Laki-Laki") {
 		return ` <img src="asset/dist/img/man5.png" alt="` + g + `" class="rounded-circle" width="25"></img> `
 	} else if (g == "Perempuan") {
 		return ` <img src="asset/dist/img/woman6.png" alt="` + g + `" class="rounded-circle" width="25"></img> `
