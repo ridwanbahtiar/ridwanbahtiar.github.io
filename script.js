@@ -3,14 +3,23 @@ function formatNumber(num) {
 	return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') 
 }
 
-// Fungsi Gender
-function statusGender(sg) {
-	if (sg == "Sembuh") {
-		return ` <span class="btn btn-icon btn-sm btn-success">` + sg + `</span>`
-	} else if (sg == "Dalam Perawatan") {
-		return ` <span class="btn btn-icon btn-sm btn-warning">` + sg + `</span>`
-	} else if (sg == "Meninggal") {
-		return ` <span class="btn btn-icon btn-sm btn-danger">` + sg + `</span>`
+//Fungsi Gender
+function gender(g) {
+	if (g == "Laki-laki") {
+		return ` <img src="asset/dist/img/man5.png" alt="` + g + `" class="rounded-circle" width="25"></img> `
+	} else if (g == "Perempuan") {
+		return ` <img src="asset/dist/img/woman6.png" alt="` + g + `" class="rounded-circle" width="25"></img> `
+	}
+}
+
+// Fungsi Status
+function status(s) {
+	if (s == "Sembuh") {
+		return ` <span class="btn btn-icon btn-sm btn-success">` + s + `</span>`
+	} else if (s == "Dalam Perawatan") {
+		return ` <span class="btn btn-icon btn-sm btn-warning">` + s + `</span>`
+	} else if (s == "Meninggal") {
+		return ` <span class="btn btn-icon btn-sm btn-danger">` + s + `</span>`
 	}
 }
 
@@ -28,14 +37,14 @@ $.ajax({
 
 // Data Coronavirus di indonesia
 $.ajax({
-	url: 'https://kawalcovid19.harippe.id/api/summary',
+	url: 'https://indonesia-covid-19.mathdro.id/api',
 	type: 'get',
 	dataType: 'json',
 	success: function (data) {
-		$('#positif').append(formatNumber(data.confirmed.value))
-		$('#dalamPerawatan').append(formatNumber(data.activeCare.value))
-		$('#sembuh').append(formatNumber(data.recovered.value))
-		$('#meninggal').append(formatNumber(data.deaths.value))
+		$('#positif').append(formatNumber(data.jumlahKasus))
+		$('#dalamPerawatan').append(formatNumber(data.perawatan))
+		$('#sembuh').append(formatNumber(data.sembuh))
+		$('#meninggal').append(formatNumber(data.meninggal))
 	}
 })
 
@@ -74,8 +83,8 @@ $.ajax({
 				<td>` + i + `</td>
 				<td>` + formatNumber(result.kasus) +`</td>
 				<td>` + result.umur +`</td>
-				<td>` + result.gender + `</td>
-				<td>` + statusGender(result.status) + `</td>
+				<td>` + gender(result.gender) + `</td>
+				<td>` + status(result.status) + `</td>
 				<td>` + result.wn + `</td>
 				<td>` + result.klaster + `</td>
 				</tr>
