@@ -1,0 +1,81 @@
+body {
+    font-family: 'Montserrat';
+}
+
+nav {
+    background-color: #0D0C1C;
+}
+
+.navbar-brand{
+    font-family: 'Pacifico';
+    font-size: 30px;
+}
+
+.navbar-brand, .nav-link {
+    color: white !important;
+}
+
+.navbar-brand:hover, .nav-link:hover {
+    color: rgb(207, 207, 207) !important;
+}
+
+.jumbotron {
+    background-color: #0f0e20;
+    color: white;
+    border-radius: 0;
+}
+
+.hero {
+    border: 3px solid white;
+}
+
+h5 {
+    font-family: 'Montserrat regular';
+    color: #707070;
+}
+
+.content {
+    background-color: #fdf7f1;
+    height: 100%;
+    margin-top: -50px;
+}
+
+section {
+    height: 400px;
+}
+
+
+.img {
+    padding: 15px;
+    border-radius: 25px;
+}
+
+.text-muted {
+    font-size: 13px;
+}
+
+.portfolio {
+    margin-bottom: 600px;
+}
+
+@media (max-width: 768px) {
+    .portfolio {
+        margin-bottom: 1500px;
+    }
+}
+
+@media (max-width: 576px) {
+    .portfolio {
+        margin-bottom: 1400px;
+    }
+}
+
+.hr {
+    background-color: #707070;
+}
+
+.jumbotron2 {
+    padding: 20px 20px 20px 20px;
+    background-color: #0f0e20;
+    color: white;
+}
